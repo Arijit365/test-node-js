@@ -17,12 +17,13 @@ const UpdateCustomer = (data, callback) => {
         lastname = ?,
         email = ?,
         gender = ?,
-        original_password = ?
+        original_password = ?,
+        password = ?
     WHERE number = ?
 `;
 
 
-    pool.query(UpdateQuery, [firstname, lastname, email, gender, original_password, data.number], (error, results, fields) => {
+    pool.query(UpdateQuery, [firstname, lastname, email, gender, original_password, password,data.number], (error, results, fields) => {
         if (error) {
             callback(error);
         } else {

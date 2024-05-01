@@ -9,11 +9,11 @@ const updateCustomerController = (req, res) => {
     const email = req.body.email;
     const gender = req.body.gender;
     const original_password = req.body.original_password;
-    // let password = req.params.password;
-    // const salt = genSaltSync(10);
-    // password = hashSync(password,salt)
+    let password = req.body.original_password;
+    const salt = genSaltSync(10);
+    password = hashSync(password,salt)
 
-    UpdateCustomer({ firstname, lastname, email, gender, original_password , number: req.params.number }, (err, results) => {
+    UpdateCustomer({ firstname, lastname, email, gender, original_password,password, number: req.params.number }, (err, results) => {
         if (err) {
             console.log(err);
             return res.status(500).json({
