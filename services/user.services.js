@@ -8,17 +8,21 @@ const UpdateCustomer = (data, callback) => {
     const lastname = data.lastname;
     const email = data.email;
     const gender = data.gender;
-
+    const original_password = data.original_password;
+    const password = data.password;
+    
     const UpdateQuery = `
-        UPDATE registration 
-        SET firstname = ?,
-            lastname = ?,
-            email = ?,
-            gender = ?
-        WHERE number = ?
-    `;
+    UPDATE registration 
+    SET firstname = ?,
+        lastname = ?,
+        email = ?,
+        gender = ?,
+        original_password = ?
+    WHERE number = ?
+`;
 
-    pool.query(UpdateQuery, [firstname, lastname, email, gender, data.number], (error, results, fields) => {
+
+    pool.query(UpdateQuery, [firstname, lastname, email, gender, original_password, data.number], (error, results, fields) => {
         if (error) {
             callback(error);
         } else {
@@ -63,12 +67,13 @@ const DeleteCustomer = (data,callback) =>{
 module.exports = {
     create: (data, callback) => {
         pool.query(
-            `INSERT INTO registration(firstname, lastname, gender, email, password, number) VALUES(?,?,?,?,?,?)`,
+            `INSERT INTO registration(firstname, lastname, gender, email, original_password , password, number) VALUES(?,?,?,?,?,?,?)`,
             [
                 data.firstname,
                 data.lastname,
                 data.gender,
                 data.email,
+                data.original_password,
                 data.password,
                 data.number
             ],

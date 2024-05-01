@@ -1,15 +1,19 @@
-const { number } = require('joi');
+const { number, bool } = require('joi');
 const {create,getallUserByNumber,UpdateCustomer,getAllCustomer,DeleteCustomer} = require('../services/user.services');
 const {genSaltSync,hashSync} = require("bcrypt");
 
 // Update customer controller 
 const updateCustomerController = (req, res) => {
-    const firstname = req.params.firstname;
-    const lastname = req.params.lastname;
-    const email = req.params.email;
-    const gender = req.params.gender;
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const email = req.body.email;
+    const gender = req.body.gender;
+    const original_password = req.body.original_password;
+    // let password = req.params.password;
+    // const salt = genSaltSync(10);
+    // password = hashSync(password,salt)
 
-    UpdateCustomer({ firstname, lastname, email, gender, number: req.params.number }, (err, results) => {
+    UpdateCustomer({ firstname, lastname, email, gender, original_password , number: req.params.number }, (err, results) => {
         if (err) {
             console.log(err);
             return res.status(500).json({

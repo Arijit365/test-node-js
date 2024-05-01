@@ -5,3 +5,7 @@ CREATE TABLE `test`.`registration` (`id` INT(15) NOT NULL AUTO_INCREMENT , `firs
 --- Query for add new column country code , by default we stored 91
 
 ALTER TABLE `registration` ADD `country_code` INT(6) NULL DEFAULT '91' AFTER `number`;
+
+-- Query for add new column original_password 
+
+ALTER TABLE `registration` ADD `original_password` VARCHAR(255) NULL AFTER `email`;
