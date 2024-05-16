@@ -9,3 +9,7 @@ ALTER TABLE `registration` ADD `country_code` INT(6) NULL DEFAULT '91' AFTER `nu
 -- Query for add new column original_password 
 
 ALTER TABLE `registration` ADD `original_password` VARCHAR(255) NULL AFTER `email`;
+
+-- Create a new table to add the merchant's authentication details
+
+CREATE TABLE `test`.`master` (`id` INT NOT NULL AUTO_INCREMENT , `client_id` VARCHAR(255) NULL DEFAULT NULL , `client_secret_key` VARCHAR(255) NULL DEFAULT NULL , `token` TEXT NULL DEFAULT NULL , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;

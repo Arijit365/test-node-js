@@ -1,6 +1,41 @@
 const { number, bool } = require('joi');
-const {create,getallUserByNumber,UpdateCustomer,getAllCustomer,DeleteCustomer} = require('../services/user.services');
+const {create,getallUserByNumber,UpdateCustomer,getAllCustomer,DeleteCustomer, merchantAuthenticate} = require('../services/user.services');
 const {genSaltSync,hashSync} = require("bcrypt");
+const jwt =  require('jsonwebtoken');
+
+// Authenticate merchant and generate security token for other API
+
+// const authicateController = (req,res )=>{
+//     const client_id = req.body.client_id;
+//     const client_secret_key = req.body.client_secret_key;
+
+// merchantAuthenticate({client_id,client_secret_key}, (err,results)=>{
+//     if(err){
+//         console.log(err);
+//         return res.status(500).json({
+//             success:0,
+//             errCode:500,
+//             message:"Internal Server error"
+//         });
+//     }
+//     else if(!results || !results.affectedRows === 0){
+//         return res.status(400).json({
+//             success:0,
+//             errCode:401,
+//             message:"Registration process is failed"
+//         })
+//         else {
+//             let token = jwt.sign({client_id , client_secret_key})
+//         }
+//     }
+// })
+// }
+
+
+
+
+
+
 
 // Update customer controller 
 const updateCustomerController = (req, res) => {
@@ -25,7 +60,7 @@ const updateCustomerController = (req, res) => {
             return res.status(400).json({
                 success: 0,
                 errCode: 401,
-                message: "Record is not found"
+                message: "Failed to update user"
             });
         } else {
             return res.status(200).json({

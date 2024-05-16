@@ -2,6 +2,26 @@
 const pool = require('../config/mysql.config');
 
 
+
+// Merchant Login feature by clientId and client SecreatKey 
+
+// const merchantAuthenticate = (req,res) =>{
+//     const client_id = req.client_id;
+//     const client_secret_key = req.client_secret_key;
+    
+//     const authenticateQuery = `
+//     INSERT INTO master(client_id,client_secret_key,token) VALUES(???);
+//     `;
+
+//     pool.query(authenticateQuery, [client_id,client_secret_key], (error,results,fields)=>{
+//         if(error){
+//             callback(error);
+//         }else{
+//             return callback(null,results[0]);
+//         }
+//     })
+// }
+
 // Model For the Update Customer feature
 const UpdateCustomer = (data, callback) => {
     const firstname = data.firstname;
@@ -101,5 +121,6 @@ module.exports = {
     },
     UpdateCustomer,
     getAllCustomer,
-    DeleteCustomer
+    DeleteCustomer,
+    // merchantAuthenticate
 };
